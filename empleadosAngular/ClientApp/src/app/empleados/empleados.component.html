@@ -1,0 +1,29 @@
+<h1>Empleados</h1>
+
+<button [routerLink]='["/empleados-agregar"]' class="btn btn-primary mb-2 float-right">Agregar empleado</button>
+
+<p *ngIf="!empleados"><em>Loading...</em></p>
+
+<table class='table table-striped' *ngIf="empleados">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>Cargo</th>
+      <th>Sueldo</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let empleado of empleados">
+      <td>{{ empleado.nombre }}</td>
+      <td>{{ empleado.apellidos }}</td>
+      <td>{{ empleado.cargo }}</td>
+      <td>{{ empleado.sueldo }}</td>
+      <td>
+        <button class="btn btn-primary mr-1" [routerLink]='["/empleados-editar/" + empleado.id]'>Editar</button>
+        <button class="btn btn-danger mr-1" (click)="delete(empleado)">Borrar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
